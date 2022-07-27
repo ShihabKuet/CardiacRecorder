@@ -25,7 +25,9 @@ public class showHistory extends AppCompatActivity {
     RecyclerView recyclerView;
     DatabaseReference database;
     recviewAdapter recviewadapter;
-    ArrayList<bp> list;
+    ArrayList<bp_record_pass> list;
+    db_class dbc;
+    String key = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +39,21 @@ public class showHistory extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        list = new ArrayList<>();
-        recviewadapter = new recviewAdapter(this,list);
+        //list = new ArrayList<>();
+        recviewadapter = new recviewAdapter(this);
         recyclerView.setAdapter(recviewadapter);
+        dbc = new db_class();
+
+        loadData();
+
+
+        /*
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    bp b = dataSnapshot.getValue(bp.class);
+                    bp_record_pass b = dataSnapshot.getValue(bp_record_pass.class);
 
                     list.add(b);
                 }
@@ -57,7 +65,34 @@ public class showHistory extends AppCompatActivity {
 
             }
         });
+        */
+
     }
+
+    private  void loadData(){
+        dbc.get().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<bp_record_pass> bprs = new ArrayList<>();
+                for(DataSnapshot data : snapshot.getChildren()){
+                    bp_record_pass bpr = data.getValue(bp_record_pass.class);
+                    bpr.setKey(data.getKey());
+                    bprs.add(bpr);
+                    key = data.getKey();
+                }
+                recviewadapter.setItems(bprs);
+                recviewadapter.notifyDataSetChanged();
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
 
 
 }
