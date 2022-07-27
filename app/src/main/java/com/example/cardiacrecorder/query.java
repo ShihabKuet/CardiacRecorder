@@ -13,7 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class query extends AppCompatActivity {
 
-     =DatabaseReference databaseReference;
+     /*=DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +30,5 @@ public class query extends AppCompatActivity {
 
         });
     }
-}
+}*/
 }

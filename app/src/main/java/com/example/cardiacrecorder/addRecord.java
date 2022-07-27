@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class addRecord extends AppCompatActivity {
 
@@ -90,7 +91,6 @@ public class addRecord extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
@@ -104,8 +104,19 @@ public class addRecord extends AppCompatActivity {
         //get_extr =(Spinner) findViewById(R.id.extrimity_spinner);
        // get_pos = (Spinner) findViewById(R.id.position_spinner);
         addbtn = findViewById(R.id.addbtn);
+        db_class dbClass = new db_class();
+        bp_record_pass bp_edit = (bp_record_pass)getIntent().getSerializableExtra("EDIT");
+        if(bp_edit!=null){
+            addbtn.setText("UPDATE");
+            sys.setText(bp_edit.getSys());
+            dia.setText(bp_edit.getDia());
+            pultxt.setText(bp_edit.getPul());
+            cmntxt.setText(bp_edit.getComment());
 
-
+        }
+        else{
+            addbtn.setText("ADD");
+        }
 
        addbtn.setOnClickListener(v->
        {
@@ -128,9 +139,13 @@ public class addRecord extends AppCompatActivity {
                verdict = "Hypotension";
            }
 
-           db_class dbClass = new db_class();
-           bp_record_pass bpRecordPass = new bp_record_pass(systolic,diastolic,puls,ext,pos,date_text.getText().toString(),time_text.getText().toString(),comment,verdict);
-            dbClass.add(bpRecordPass).addOnSuccessListener(suc->
+
+
+
+           bp_record_pass bpr = new bp_record_pass(systolic,diastolic,puls,ext,pos,date_text.getText().toString(),time_text.getText().toString(),comment,verdict);
+
+           if(bp_edit==null){
+           dbClass.add(bpr).addOnSuccessListener(suc->
                     {
                        Toast.makeText(this,"Insertion successful",Toast.LENGTH_SHORT).show();
 
@@ -139,6 +154,22 @@ public class addRecord extends AppCompatActivity {
                 Toast.makeText(this,""+er.getMessage(),Toast.LENGTH_SHORT).show();
 
             });
+           }
+           else{
+               HashMap<String, Object> hashMap = new HashMap<>();
+               hashMap.put("sys", sys.getText().toString());
+               hashMap.put("dia", dia.getText().toString());
+               hashMap.put("pul", pultxt.getText().toString());
+               hashMap.put("comment", cmntxt.getText().toString());
+               dbClass.update(bp_edit.getKey(), hashMap).addOnSuccessListener(suc ->
+               {
+                   Toast.makeText(this,"Record is updated", Toast.LENGTH_SHORT).show();
+                   finish();
+               }).addOnFailureListener(er ->
+               {
+                   Toast.makeText(this, ""+er.getMessage(), Toast.LENGTH_SHORT).show();
+               });
+           }
        });
 
 
