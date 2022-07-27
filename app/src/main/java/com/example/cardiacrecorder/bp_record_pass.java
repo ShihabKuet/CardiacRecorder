@@ -1,6 +1,14 @@
 package com.example.cardiacrecorder;
 
-public class bp_record_pass {
+import com.google.firebase.database.Exclude;
+
+import java.io.Serializable;
+
+public class bp_record_pass implements Serializable {
+
+
+    @Exclude
+    private String key;
     private String sys;
     private String dia;
     private String pul;
@@ -96,4 +104,14 @@ public class bp_record_pass {
     public void setVerdict(String verdict) {
         this.verdict = verdict;
     }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+
 }

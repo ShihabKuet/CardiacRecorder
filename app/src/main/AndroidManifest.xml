@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CardiacRecorder">
         <activity
+            android:name=".viewActivity"
+            android:exported="false" />
+        <activity
             android:name=".query"
             android:exported="false" />
         <activity
