@@ -56,9 +56,9 @@ public class Registration extends AppCompatActivity {
         reg = findViewById(R.id.regbtn);
 
 
-        /*
+        /**
          * use last logged in account
-         * */
+         **/
         if (mUser != null) {
             sendUserToNextActivity();
             finish();
@@ -82,10 +82,10 @@ public class Registration extends AppCompatActivity {
 
     }
 
-    /*
+    /**
      * PerforAuth() method
      * used for authentication and send value to firebase
-     * */
+     **/
 
     private void PerforAuth() {
         String fullname = inputname.getText().toString();

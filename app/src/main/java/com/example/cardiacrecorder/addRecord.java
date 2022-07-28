@@ -2,8 +2,10 @@ package com.example.cardiacrecorder;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,8 +17,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
+
+/**
+This class is used for send data to
+ firebase realtime database
+ **/
 
 public class addRecord extends AppCompatActivity {
 
@@ -32,6 +41,9 @@ public class addRecord extends AppCompatActivity {
     int systol = 0;
     int diastole=0;
 
+    public List<Adapter> record = new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +53,8 @@ public class addRecord extends AppCompatActivity {
         time_text=findViewById(R.id.timetxt);
         date_text=findViewById(R.id.datetxt);
 
-        //Current Time and Date add
+
+
         Calendar calendar=Calendar.getInstance();
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("hh:mm a");
         String time = simpleDateFormat.format(calendar.getTime());
@@ -52,10 +65,10 @@ public class addRecord extends AppCompatActivity {
 
 
 
-    /*
+    /**
     ex_spin variable
     extrimity value showing dropdown list
-     */
+     **/
         ex_spin = findViewById(R.id.extrimity_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(addRecord.this,R.layout.selected_dropdown_item,extrimity);
         adapter.setDropDownViewResource(R.layout.dropped_item);
@@ -73,10 +86,10 @@ public class addRecord extends AppCompatActivity {
             }
         });
 
-    /*
+    /**
     pos_spin variable
     position value showing dropdown list
-     */
+     **/
 
         pos_spin = findViewById(R.id.position_spinner);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(addRecord.this,R.layout.selected_dropdown_item,position);
@@ -120,7 +133,6 @@ public class addRecord extends AppCompatActivity {
 
        addbtn.setOnClickListener(v->
        {
-
            systol = Integer.valueOf(sys.getText().toString().trim());
            diastole = Integer.valueOf(dia.getText().toString().trim());
            String puls = pultxt.getText().toString().trim();
@@ -138,6 +150,19 @@ public class addRecord extends AppCompatActivity {
            else if(systol<90 && diastole<60){
                verdict = "Hypotension";
            }
+           else if(systol>140 && systol<=180 && diastole>90 && diastole<=120)
+           {
+               verdict = "Elavated";
+           }
+           else {
+               Toast.makeText(this,"Invalid",Toast.LENGTH_SHORT).show();
+
+               Intent intent = new Intent(addRecord.this,home_2.class);
+               startActivity(intent);
+               return;
+
+           }
+
 
 
 
@@ -152,7 +177,6 @@ public class addRecord extends AppCompatActivity {
                     }).addOnFailureListener(er->
             {
                 Toast.makeText(this,""+er.getMessage(),Toast.LENGTH_SHORT).show();
-
             });
            }
            else{

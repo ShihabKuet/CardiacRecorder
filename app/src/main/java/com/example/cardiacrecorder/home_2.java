@@ -38,7 +38,7 @@ public class home_2 extends AppCompatActivity {
         showHistory=findViewById(R.id.showHistory);
 
 
-        /* making image clickable to jump to record adding */
+        /** making image clickable to jump to record adding */
         addRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +81,11 @@ public class home_2 extends AppCompatActivity {
        }
 
     }
+
+    /**
+     * this method signs out
+     * user from firebase and app
+     */
 
     private void signOutUser() {
         Intent intent = new Intent(home_2.this, Login.class);
