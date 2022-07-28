@@ -21,6 +21,12 @@ public class bp_record_pass implements Serializable {
 
     public bp_record_pass(){}
 
+    /**
+     *get value and store
+     * for sending to firebas
+     * @param sys, dia, pul, extrimity , position, data ,time, comment, verdict
+     */
+
     public bp_record_pass(String sys, String dia, String pul, String extrimity, String position, String date, String time, String comment, String verdict) {
         this.sys = sys;
         this.dia = dia;

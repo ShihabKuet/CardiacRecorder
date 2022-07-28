@@ -22,6 +22,11 @@ import java.util.ArrayList;
 
 public class showHistory extends AppCompatActivity {
 
+    /**this activity shows record
+     * in a recyclerview
+     * the records are fetched from firebase
+     **/
+
     RecyclerView recyclerView;
     DatabaseReference database;
     recviewAdapter recviewadapter;

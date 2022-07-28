@@ -13,9 +13,6 @@
             android:name=".viewActivity"
             android:exported="false" />
         <activity
-            android:name=".query"
-            android:exported="false" />
-        <activity
             android:name=".Login"
             android:exported="false" />
         <activity
