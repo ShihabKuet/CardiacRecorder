@@ -60,6 +60,10 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    /**
+     * this PerforLogin method is used to add any new user
+     */
+
     private void PerforLogin() {
         String email = inputemail.getText().toString();
         String password = inputpass.getText().toString();
@@ -94,6 +98,12 @@ public class Login extends AppCompatActivity {
 
 
     }
+
+    /**
+     * this method is used to send user to home
+     * after login is succcessful
+     * else it shows error
+     */
 
     private void sendUserToNextActivity() {
         Intent intent = new Intent(Login.this, home_2.class);

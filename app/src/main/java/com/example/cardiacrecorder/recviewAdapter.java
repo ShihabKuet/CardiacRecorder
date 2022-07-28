@@ -53,25 +53,7 @@ public class recviewAdapter extends RecyclerView.Adapter<recviewAdapter.MyviewHo
         vh.dia.setText(bpr.getDia());
         vh.verdict.setText(bpr.getVerdict());
 
-        /*
-        holder.date.setText(bpr.getDate());
-        holder.sys.setText(bpr.getSys());
-        holder.dia.setText(bpr.getDia());
-        holder.verdict.setText(bpr.getVerdict());
 
-         */
-
-        /*
-        holder.vi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               Intent intent = new Intent(context,addRecord.class);
-               intent.putExtra("EDIT",bpr);
-               context.startActivity(intent);
-            }
-        });
-
-         */
 
         holder.edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -15,6 +15,11 @@ public class db_class {
         databaseReference = db.getReference(bp_record_pass.class.getSimpleName());
     }
 
+    /**
+     *database push
+     * @return  task<>
+     */
+
     public Task<Void> add(bp_record_pass bpr)
     {
         //if (bpr == null) //throw exception
@@ -25,6 +30,11 @@ public class db_class {
         return  databaseReference.child(key).updateChildren(hashMap);
     }
 
+    /**
+     *database push
+     * @return  task<>
+     * @param key
+     */
     public Task<Void> delete(String key){
         return databaseReference.child(key).removeValue();
     }
