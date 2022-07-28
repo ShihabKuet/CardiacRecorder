@@ -44,33 +44,11 @@ public class showHistory extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //list = new ArrayList<>();
         recviewadapter = new recviewAdapter(this);
         recyclerView.setAdapter(recviewadapter);
         dbc = new db_class();
 
         loadData();
-
-
-        /*
-
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    bp_record_pass b = dataSnapshot.getValue(bp_record_pass.class);
-
-                    list.add(b);
-                }
-                recviewadapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        */
 
     }
 

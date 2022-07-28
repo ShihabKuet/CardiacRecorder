@@ -133,7 +133,6 @@ public class addRecord extends AppCompatActivity {
 
        addbtn.setOnClickListener(v->
        {
-
            systol = Integer.valueOf(sys.getText().toString().trim());
            diastole = Integer.valueOf(dia.getText().toString().trim());
            String puls = pultxt.getText().toString().trim();
@@ -178,7 +177,6 @@ public class addRecord extends AppCompatActivity {
                     }).addOnFailureListener(er->
             {
                 Toast.makeText(this,""+er.getMessage(),Toast.LENGTH_SHORT).show();
-
             });
            }
            else{
