@@ -33,6 +33,8 @@ public class viewActivity extends AppCompatActivity {
             posview.setText(bp_edit.getPosition());
             verview.setText(bp_edit.getVerdict());
             comview.setText(bp_edit.getComment());
+            dateview.setText(bp_edit.getDate());
+            timeview.setText(bp_edit.getTime());
 
 
 
